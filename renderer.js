@@ -411,9 +411,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         { text: caption('missionSolving'), mode: 'missionSolving' },
         { text: caption('configuration'), mode: 'configuration' },
         { text: caption('customrules'), mode: 'customrules' },
-        { text: caption('customtool'), mode: 'customtool' },
-        { text: caption('youtube'), mode: 'youtube' },
-        { text: caption('class'), mode: 'class' }
+        { text: caption('customtool'), mode: 'customtool' }//,
+        //{ text: caption('youtube'), mode: 'youtube' },
+        //{ text: caption('class'), mode: 'class' }
     ];
 
     // 각 메뉴 항목을 메인 메뉴 컨테이너에 추가

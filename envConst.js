@@ -12,7 +12,7 @@ const defaultConfig = {
     model: "claude-3-5-haiku-20241022",
     deepseekModel: "deepseek-chat",
     openaiModel: "gpt-4o-mini",
-    ollamaModel: "qwen2.5:14b",
+    ollamaModel: "qwen2.5:latest",
     groqModel: "llama-3.3-70b-versatile",
     llm: "gemini",
     maxIterations: 0,

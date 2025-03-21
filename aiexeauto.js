@@ -368,12 +368,12 @@ if (prompt === 'version') {
                 {
                     label: 'App',
                     submenu: [
-                        {
-                            label: 'About AIEXEAUTO',
-                            click: async () => {
-                                await open('https://youtu.be/dvx-gFx6nUw?si=o3w0knQXdQ_H3q8H');
-                            }
-                        },
+                        //{
+                        //    label: 'About AIEXEAUTO',
+                        //    click: async () => {
+                        //        await open('https://youtu.be/dvx-gFx6nUw?si=o3w0knQXdQ_H3q8H');
+                        //    }
+                        //},
                         { type: 'separator' },
                         {
                             role: 'quit',

@@ -13,7 +13,7 @@ import { getLastDirectoryName, getDetailDirectoryStructure } from './dataHandler
 import { isNodeInitialized, initNodeProject, restoreWorkspace, waitingForDataCheck, exportFromDockerForDataCheck, cleanContainer, isDockerContainerRunning, getDockerInfo, runDockerContainer, killDockerContainer, runDockerContainerDemon, importToDocker, exportFromDocker, isInstalledNodeModule, installNodeModules, runNodeJSCode, runPythonCode, doesDockerImageExist, isInstalledPythonModule, installPythonModules } from './docker.js';
 import { cloneCustomTool, getToolList, getToolData, getAppPath, getUseDocker, replaceAll, promptTemplate } from './system.js';
 import fs from 'fs';
-import { getConfiguration } from './system.js';
+import { getConfiguration, setConfiguration } from './system.js';
 import { actDataParser } from './actDataParser.js';
 import { makeCodePrompt, indention } from './makeCodePrompt.js';
 import { makeRealTransaction } from './makeRealTransaction.js';
@@ -279,6 +279,14 @@ export async function solveLogic({ taskId, multiLineMission, dataSourcePath, dat
             let ollamaModel = await getConfiguration('ollamaModel');
             if (!ollamaModel) throw new Error(caption('ollamaModelNotSet'));
             if (!(await isOllamaRunning())) throw new Error(caption('ollamaServerProblem'));
+            
+            // Ollama 선택 시 로컬 모델을 사용하므로 Docker 사용 안함
+            ifUseDocker = false;
+            await setConfiguration('useDocker', false);
+            
+            const pid_ollama = await out_state(caption('usingOllamaLocal'));
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            pid_ollama.succeed(caption('ollamaConnected'));
         }
         {
             let prompt = multiLineMission;

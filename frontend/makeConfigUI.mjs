@@ -457,17 +457,26 @@ export async function makeConfigUI(configurationContainer) {
 
     // loadConfigurations 함수 내부에 Groq 관련 설정 로드 추가
     singleton.loadConfigurations = async function () {
-        // LLM 선택 로드
-        const selectedLLM = await getConfig('llm');
-        if (selectedLLM) {
-            llmSelect.value = selectedLLM;
-            // LLM 선택에 따른 UI 표시/숨김 처리
-            claudeGroup.style.display = selectedLLM === 'claude' ? 'flex' : 'none';
-            deepseekGroup.style.display = selectedLLM === 'deepseek' ? 'flex' : 'none';
-            openaiGroup.style.display = selectedLLM === 'openai' ? 'flex' : 'none';
-            ollamaGroup.style.display = selectedLLM === 'ollama' ? 'flex' : 'none';
-            groqGroup.style.display = selectedLLM === 'groq' ? 'flex' : 'none';
-            geminiGroup.style.display = selectedLLM === 'gemini' ? 'flex' : 'none';
+        // 선택된 LLM에 따라 UI 표시
+        const llm = await getConfig('llm');
+        if (llm) {
+            llmSelect.value = llm;
+            claudeGroup.style.display = llm === 'claude' ? 'flex' : 'none';
+            deepseekGroup.style.display = llm === 'deepseek' ? 'flex' : 'none';
+            openaiGroup.style.display = llm === 'openai' ? 'flex' : 'none';
+            ollamaGroup.style.display = llm === 'ollama' ? 'flex' : 'none';
+            groqGroup.style.display = llm === 'groq' ? 'flex' : 'none';
+            geminiGroup.style.display = llm === 'gemini' ? 'flex' : 'none';
+        } else {
+            // 기본값을 OpenAI로 설정
+            llmSelect.value = 'openai';
+            await setConfig('llm', 'openai');
+            claudeGroup.style.display = 'none';
+            deepseekGroup.style.display = 'none';
+            openaiGroup.style.display = 'flex';
+            ollamaGroup.style.display = 'none';
+            groqGroup.style.display = 'none';
+            geminiGroup.style.display = 'none';
         }
 
         // Claude 설정 로드
@@ -585,12 +594,12 @@ export async function makeConfigUI(configurationContainer) {
     await singleton.loadConfigurations();
 
     llmSelect.addEventListener('change', async (e) => {
-        if (llmSelect.value === 'gemini' || llmSelect.value === 'openai') {
+        if (llmSelect.value === 'gemini' || llmSelect.value === 'openai' || llmSelect.value === 'ollama') {
             await setConfig('llm', llmSelect.value);
             await singleton.loadConfigurations();
         } else {
-            // gemini나 openai가 아닌 경우 선택을 변경하지 않음
-            showAlert('LLMs other than OpenAI and Gemini are not supported.', 'warning');
+            // gemini, openai, ollama가 아닌 경우 선택을 변경하지 않음
+            showAlert('Only OpenAI, Gemini and Ollama are supported.', 'warning');
             // showAlert(caption('configChangeNotAllowed'), 'warning');
             const currentLLM = await getConfig('llm');
             if (currentLLM) {
@@ -632,10 +641,6 @@ export async function makeConfigUI(configurationContainer) {
 
     openaiModelSelect.addEventListener('change', async () => {
         await setConfig('openaiModel', openaiModelSelect.value);
-    });
-
-    ollamaModelInput.addEventListener('input', async () => {
-        await setConfig('ollamaModel', ollamaModelInput.value);
     });
 
     dockerImageInput.addEventListener('input', async () => {
@@ -753,6 +758,11 @@ export async function makeConfigUI(configurationContainer) {
     // 이벤트 리스너 추가 부분에 keepDocker 이벤트 리스너 추가
     keepDockerCheckbox.addEventListener('change', async () => {
         await setConfig('keepDockerContainer', keepDockerCheckbox.checked);
+    });
+
+    // Ollama 설정 이벤트 리스너 추가
+    ollamaModelInput.addEventListener('input', async () => {
+        await setConfig('ollamaModel', ollamaModelInput.value);
     });
 }
 

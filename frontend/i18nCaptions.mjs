@@ -124,7 +124,9 @@ export const i18nCaptions = {
         "aiRetryWaiting": "{{model}}이 {{stateLabel}}을 재시도 대기중입니다.",
         "aiAnalyzingResult": "{{stateLabel}}을 분석중입니다...",
         "aiAnalyzingResultFailed": "{{stateLabel}} 분석에 실패했습니다.",
-        "aiRetryWaitingSecondLeft": "{{model}}이 {{stateLabel}}을 {{second}}초 후에 재시도 대기중입니다."
+        "aiRetryWaitingSecondLeft": "{{model}}이 {{stateLabel}}을 {{second}}초 후에 재시도 대기중입니다.",
+        "usingOllamaLocal": "Ollama 로컬 AI 모델을 사용하는 중...",
+        "ollamaConnected": "Ollama 로컬 AI 모델에 연결되었습니다."
     },
     "en": {
         "retrievingFromPdf": "Reading PDF file...",
@@ -251,7 +253,9 @@ export const i18nCaptions = {
         "aiRetryWaiting": "{{model}} is waiting for retry of {{stateLabel}}",
         "aiAnalyzingResult": "{{stateLabel}} is being analyzed...",
         "aiAnalyzingResultFailed": "{{stateLabel}} analysis failed",
-        "aiRetryWaitingSecondLeft": "{{model}} is waiting for retry of {{stateLabel}} {{second}} seconds left"
+        "aiRetryWaitingSecondLeft": "{{model}} is waiting for retry of {{stateLabel}} {{second}} seconds left",
+        "usingOllamaLocal": "Using Ollama local AI model...",
+        "ollamaConnected": "Connected to Ollama local AI model."
     },
     "ja": {
         "retrievingFromPdf": "PDF ファイルを読み込んでいます...",
@@ -332,7 +336,7 @@ export const i18nCaptions = {
         "ollamaModelInfo": "Tools サポートモデルのみ使用可能です。サポートモデルのリスト",
         "ollamaEndpointPlaceholder": "Ollama API エンドポイントを入力 (例: http://localhost:11434)",
         "dockerPathPlaceholder": "Docker パスを入力 (例: /usr/local/bin/docker)",
-        "dockerImageNamePlaceholder": "Docker イメージ名を入力",
+        "dockerImageNamePlaceholder": "Enter Docker Image Name",
         "autoCodeExecutionDescription": "チェックするとコードが自動的に実行されます。チェックしないと手動で実行する必要があります。",
         "planEditableDescription": "チェックするとAIが判断した計画を編集できます。",
         "clearDataButton": "全ての出力データを削除",
@@ -358,8 +362,8 @@ export const i18nCaptions = {
         "importingData": "データをインポート中...",
         "dockerNotRunning": "Dockerが実行されていません",
         "dockerImageNotSet": "Dockerイメージが設定されていません",
-        "ollamaModelNotSet": "Ollamaモデルが設定されていません",
-        "ollamaServerProblem": "Ollama APIサーバーの確認に問題があります",
+        "ollamaModelNotSet": "Ollamaモデルが設定されていません。",
+        "ollamaServerProblem": "Ollama APIサーバーに問題があります。",
         "codeExecutionCompleted": "コード実行 #{{iterationCount}}回目完了",
         "dockerImageNotFound": "Dockerイメージ {{dockerImage}}が存在しません",
         "nodeFilesInDataSource": "データソースパスにNode.js関連ファイル({{file}})が含まれています",
@@ -372,13 +376,15 @@ export const i18nCaptions = {
         "geminiApiKeyNotSet": "Gemini APIキーが設定されていません。",
         "dockerPathNotSet": "Dockerパスが設定されていません。",
         "ollamaServerNotRunning": "Ollama APIサーバーの確認に問題があります。",
-        "aiProcessing": "{{stateLabel}}を{{model}}が処理中です...",
-        "aiMissionAborted": "{{stateLabel}}を{{model}}が中断しました ({{errorMessage}})",
+        "aiProcessing": "{{model}}が{{stateLabel}}を処理中です...",
+        "aiMissionAborted": "{{model}}が{{stateLabel}}を中断しました ({{errorMessage}})",
         "aiNoResult": "{{model}}が{{stateLabel}}の結果を出力できませんでした。",
         "aiRetryWaiting": "{{model}}が{{stateLabel}}を再試行待ちです。",
         "aiAnalyzingResult": "{{stateLabel}}を分析中です...",
         "aiAnalyzingResultFailed": "{{stateLabel}}の分析に失敗しました。",
-        "aiRetryWaitingSecondLeft": "{{model}}が{{stateLabel}}を{{second}}秒後に再試行します。"
+        "aiRetryWaitingSecondLeft": "{{model}}が{{stateLabel}}を{{second}}秒後に再試行します。",
+        "usingOllamaLocal": "Ollamaローカルモデルを使用中...",
+        "ollamaConnected": "Ollamaローカルモデルに接続されました。"
     },
     "vi": {
         "retrievingFromPdf": "Đang đọc tệp PDF...",
@@ -505,7 +511,9 @@ export const i18nCaptions = {
         "aiRetryWaiting": "{{model}} đang chờ thử lại {{stateLabel}}.",
         "aiAnalyzingResult": "Đang phân tích {{stateLabel}}...",
         "aiAnalyzingResultFailed": "Phân tích {{stateLabel}} thất bại.",
-        "aiRetryWaitingSecondLeft": "{{model}} sẽ thử lại {{stateLabel}} sau {{second}} giây."
+        "aiRetryWaitingSecondLeft": "{{model}} sẽ thử lại {{stateLabel}} sau {{second}} giây.",
+        "usingOllamaLocal": "Đang sử dụng mô hình AI Ollama cục bộ...",
+        "ollamaConnected": "Đã kết nối với mô hình AI Ollama cục bộ."
     },
     "zh": {
         "retrievingFromPdf": "正在读取PDF文件...",
@@ -612,8 +620,8 @@ export const i18nCaptions = {
         "importingData": "正在导入数据...",
         "dockerNotRunning": "Docker未运行",
         "dockerImageNotSet": "未设置Docker镜像",
-        "ollamaModelNotSet": "未设置Ollama模型",
-        "ollamaServerProblem": "Ollama API服务器检查出现问题",
+        "ollamaModelNotSet": "Ollama模型未设置。",
+        "ollamaServerProblem": "Ollama API服务器存在问题。",
         "codeExecutionCompleted": "代码执行第{{iterationCount}}次完成",
         "dockerImageNotFound": "Docker镜像{{dockerImage}}不存在",
         "nodeFilesInDataSource": "数据源路径中包含Node.js相关文件({{file}})",
@@ -621,18 +629,20 @@ export const i18nCaptions = {
         "deepseekApiKeyNotSet": "未设置DeepSeek API密钥",
         "openaiApiKeyNotSet": "未设置OpenAI API密钥",
         "openaiIsMustSet": "Retrieval 功能使用需要设置 OpenAI API 密钥。",
-        "ollamaApiKeyNotSet": "未设置Ollama API密钥",
+        "ollamaApiKeyNotSet": "Ollama API密钥未设置。",
         "groqApiKeyNotSet": "未设置Groq API密钥",
         "geminiApiKeyNotSet": "未设置Gemini API密钥",
         "dockerPathNotSet": "未设置Docker路径",
-        "ollamaServerNotRunning": "Ollama API服务器检查出现问题",
+        "ollamaServerNotRunning": "Ollama API服务器检查存在问题",
         "aiProcessing": "{{model}}正在处理{{stateLabel}}...",
         "aiMissionAborted": "{{model}}已中止{{stateLabel}}（{{errorMessage}}）",
         "aiNoResult": "{{model}}没有{{stateLabel}}的结果",
         "aiRetryWaiting": "{{model}}正在等待重试{{stateLabel}}",
         "aiAnalyzingResult": "正在分析{{stateLabel}}...",
         "aiAnalyzingResultFailed": "{{stateLabel}}分析失败",
-        "aiRetryWaitingSecondLeft": "{{model}}将在{{second}}秒后重试{{stateLabel}}"
+        "aiRetryWaitingSecondLeft": "{{model}}将在{{second}}秒后重试{{stateLabel}}",
+        "usingOllamaLocal": "正在使用Ollama本地AI模型...",
+        "ollamaConnected": "已连接到Ollama本地AI模型。"
     },
 
 };

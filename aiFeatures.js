@@ -806,10 +806,9 @@ export async function chatCompletion(systemPrompt_, promptList, callMode, interf
         if (llm === 'claude' && !claudeApiKey) throw new Error(caption('claudeApiKeyNotSet'));
         if (llm === 'deepseek' && !deepseekApiKey) throw new Error(caption('deepseekApiKeyNotSet'));
         if (llm === 'openai' && !openaiApiKey) throw new Error(caption('openaiApiKeyNotSet'));
-        if (llm === 'ollama' && !ollamaApiKey && false) throw new Error(caption('ollamaApiKeyNotSet'));
         if (llm === 'groq' && !groqApiKey) throw new Error(caption('groqApiKeyNotSet'));
         if (llm === 'gemini' && !geminiApiKey) throw new Error(caption('geminiApiKeyNotSet'));
-        if (!openaiApiKey) throw new Error(caption('openaiIsMustSet'));
+        if (llm !== 'ollama' && !openaiApiKey) throw new Error(caption('openaiIsMustSet'));
         if (useDocker && !dockerPath) throw new Error(caption('dockerPathNotSet'));
 
         let tool_choice_list = {
